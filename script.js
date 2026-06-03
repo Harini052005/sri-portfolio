@@ -31,42 +31,7 @@ document.querySelectorAll('.card img,.card video').forEach((el,i)=>{
   el.onclick=()=>{currentIndex=i;openPopup();};
 });
 
-// disable scroll when popup open
-function openPopup(){
-    popup.classList.add('open');
-    document.body.style.overflow='hidden';
-  
-    const el = items[currentIndex];
-    counter.textContent = (currentIndex+1)+' / '+items.length;
-  
-    if(el.tagName==='IMG'){
-      popupImg.src = el.src;
-      popupImg.style.display='block';
-      popupVideo.style.display='none';
-    } else {
-  
-      popupVideo.pause(); // reset
-      popupVideo.src = el.src;
-  
-      popupVideo.muted = false;   // 🔥 MUST
-      popupVideo.controls = true; // show controls
-      popupVideo.currentTime = 0;
-  
-      popupVideo.style.display='block';
-      popupImg.style.display='none';
-  
-      // IMPORTANT: play after user interaction
-      setTimeout(()=>{
-        popupVideo.play().catch(()=>{});
-      },100);
-    }
-  }
 
-function closePopup(){
-  popup.classList.remove('open');
-  document.body.style.overflow = 'auto';
-  popupVideo.pause();
-}
 
 function nextSlide(){currentIndex=(currentIndex+1)%items.length;openPopup();}
 function prevSlide(){currentIndex=(currentIndex-1+items.length)%items.length;openPopup();}
