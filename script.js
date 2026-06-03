@@ -26,21 +26,6 @@ const popupImg=document.getElementById('popup-img');
 const popupVideo=document.getElementById('popup-video');
 const counter=document.getElementById('popup-counter');
 
-document.querySelectorAll('.card img,.card video').forEach((el,i)=>{
-  items.push(el);
-  el.onclick=()=>{currentIndex=i;openPopup();};
-});
-
-
-
-function nextSlide(){currentIndex=(currentIndex+1)%items.length;openPopup();}
-function prevSlide(){currentIndex=(currentIndex-1+items.length)%items.length;openPopup();}
-
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape') closePopup();
-  if(e.key==='ArrowRight') nextSlide();
-  if(e.key==='ArrowLeft') prevSlide();
-});
 
 // ─── HOVER PLAY & AUTO PLAY
 const isTouch = window.matchMedia('(hover: none)').matches;
